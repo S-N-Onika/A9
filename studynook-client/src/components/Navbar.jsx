@@ -44,7 +44,7 @@ export default function Navbar() {
                             <div className="w-8 h-8 rounded bg-[#5C2E16] flex items-center justify-center text-[#FBF8F3] shadow-inner transition-transform group-hover:scale-105">
                                 <MdLocalLibrary className="text-[#FBF8F3] text-xl"/>
                             </div>
-                            <span className="text-2xl font-serif font-black tracking-tight text-[#2E1A0F]">
+                            <span className="text-3xl font-serif font-black tracking-tight text-[#2E1A0F]">
                                 Study<span className="text-[#C29B38] font-normal italic">Nook</span>
                             </span>
                         </Link>

@@ -12,6 +12,7 @@ import {
 import { auth } from "../firebase/firebase.config";
 import axios from "axios";
 
+
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
@@ -75,7 +76,7 @@ export default function AuthProvider({ children }) {
         loading,
         createUser,
         loginUser,
-        logoutUser,
+        logoutUser, // This matches what MyProfile will now look for
         loginWithGoogle,
         updateUserProfile
     };
