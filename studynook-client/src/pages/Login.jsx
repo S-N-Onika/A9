@@ -2,17 +2,18 @@ import { useForm } from "react-hook-form";
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import { LuLogIn, LuShieldAlert } from "react-icons/lu";
+import { LuLogIn, LuShieldAlert, LuEye, LuEyeOff } from "react-icons/lu";
 import { FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
 
-import loginBgImage from "../assets/books.avif";
+import loginBgImage from "../assets/books1.webp";
 
 export default function Login() {
     const { loginUser, loginWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const [formError, setFormError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const from = location.state?.from?.pathname || "/";
@@ -79,12 +80,21 @@ export default function Login() {
 
                         <div>
                             <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Password</label>
-                            <input
-                                type="password"
-                                {...register("password", { required: true })}
-                                className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded border border-[#EADFC9] bg-[#FBF8F3]/40 text-sm focus:bg-white transition-colors text-[#2E1A0F]"
-                                placeholder="••••••••"
-                            />
+                            <div className="relative w-full">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    {...register("password", { required: true })}
+                                    className="w-full px-3 py-2 pr-10 sm:px-4 sm:py-2.5 rounded border border-[#EADFC9] bg-[#FBF8F3]/40 text-sm focus:bg-white transition-colors text-[#2E1A0F]"
+                                    placeholder="••••••••"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-500 hover:text-[#5C2E16] focus:outline-none cursor-pointer"
+                                >
+                                    {showPassword ? <LuEyeOff size={18} /> : <LuEye size={18} />}
+                                </button>
+                            </div>
                             {errors.password && <span className="text-[11px] font-bold text-rose-600 mt-0.5 block">Password parameter is required.</span>}
                         </div>
 

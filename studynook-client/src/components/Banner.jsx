@@ -3,7 +3,7 @@ import BaseSlider from "react-slick";
 import { Link } from "react-router-dom";
 import { LuArrowRight, LuChevronLeft, LuChevronRight, LuCirclePlus, LuAward } from "react-icons/lu";
 
-import bannerImg from "../assets/l1.jfif";
+import bannerImg from "../assets/l1.jpg";
 import banner1Img from "../assets/l2.jpg";
 import banner2Img from "../assets/l3.jpg";
 import banner3Img from "../assets/l4.jpg";
@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Slider = BaseSlider.default || BaseSlider;
 
-const Banner = () => {
+export default function Banner() {
     const sliderRef = useRef(null);
 
     const settings = {
@@ -65,14 +65,13 @@ const Banner = () => {
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
                 <div className="max-w-2xl w-full text-center md:text-left space-y-4 md:space-y-6">
-
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#C29B38]/20 border border-[#C29B38]/40 text-[#C29B38] text-xs uppercase tracking-widest font-bold animate-fadeIn rounded-2xl">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#C29B38]/20 border border-[#C29B38]/40 text-[#C29B38] text-xs uppercase tracking-widest font-bold">
                         <LuAward className="w-4 h-4" />
                         <span>Verified Library Network</span>
                     </div>
 
                     <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-white drop-shadow-lg leading-tight">
-                        Reserve Premium<br className="hidden sm:block" /> Study
+                        Reserve Premium<br className="hidden sm:block" /> Scholar
                         <span className="text-[#C29B38] italic font-normal"> Chambers</span>
                     </h1>
 
@@ -100,7 +99,7 @@ const Banner = () => {
                 </div>
             </div>
 
-            <style jsx global>{`
+            <style>{`
                 .slick-dots { 
                     bottom: 15px; 
                 }
@@ -122,5 +121,3 @@ const Banner = () => {
         </section>
     );
 }
-
-export default Banner;

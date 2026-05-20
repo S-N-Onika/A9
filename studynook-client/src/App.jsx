@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 // import MyBookings from "./pages/MyBookings";
 // import UpdateRoom from "./pages/UpdateRoom";
 import Login from "./pages/Login";
-// import Register from "./pages/Register";
+import Register from "./pages/Register";
 // import PrivateRoute from "./routes/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -32,10 +32,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />
       },
-      // {
-      //   path: "/register",
-      //   element: <Register />
-      // },
+      {
+        path: "/register",
+        element: <Register />
+      },
 
       // {
       //   path: "/add-room",

@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import { Menu, X, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, LogOut, ChevronDown } from "lucide-react"; 
 import { MdLocalLibrary } from "react-icons/md";
+
 
 import toast from "react-hot-toast";
 
@@ -24,7 +25,7 @@ export default function Navbar() {
     };
 
     const getNavLinkClass = ({ isActive }) =>
-        `inline-flex items-center h-full px-1 pt-1 border-b-2 text-xs uppercase tracking-widest font-bold transition-all duration-200 ${isActive
+        `inline-flex items-center h-full px-1 pt-1 border-b-2 text-sm uppercase tracking-wider font-bold transition-all duration-200 ${isActive
             ? "border-[#C29B38] text-[#5C2E16]"
             : "border-transparent text-stone-500 hover:text-[#5C2E16] hover:border-stone-300"
         }`;
@@ -43,9 +44,9 @@ export default function Navbar() {
                     <div className="flex-shrink-0">
                         <Link to="/" className="flex items-center gap-2.5 group">
                             <div className="w-8 h-8 rounded bg-[#5C2E16] flex items-center justify-center text-[#FBF8F3] shadow-inner transition-transform group-hover:scale-105">
-                                <MdLocalLibrary className="w-6 h-5 text-[#FBF8F3]" />
+                                <MdLocalLibrary className="text-[#FBF8F3] text-md" />
                             </div>
-                            <span className="text-2xl font-serif font-black tracking-tight text-[#2E1A0F]">
+                            <span className="text-3xl font-serif font-black tracking-tight text-[#2E1A0F]">
                                 Study<span className="text-[#C29B38] font-normal italic">Nook</span>
                             </span>
                         </Link>
@@ -68,17 +69,21 @@ export default function Navbar() {
                             <div className="relative">
                                 <button
                                     onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                                    className="flex items-center gap-2 p-1 rounded border border-[#EADFC9] bg-white/50 hover:bg-white transition-colors focus:outline-none group"
+                                    className="flex items-center gap-2.5 p-1.5 rounded border border-[#EADFC9] bg-white/60 hover:bg-white transition-colors focus:outline-none group cursor-pointer"
                                 >
                                     <img
-                                        className="h-7 w-7 rounded object-cover border border-stone-200"
-                                        src={user.photoURL || "https://unsplash.com"}
-                                        alt={user.displayName}
+                                        className="h-7 w-7 rounded object-cover border border-stone-200 shrink-0"
+                                        src={user?.photoURL && user.photoURL.startsWith("http") ? user.photoURL : "https://dicebear.com"}
+                                        alt="Scholar Profile Map"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = "https://dicebear.com";
+                                        }}
                                     />
-                                    <span className="text-xs font-bold text-stone-700 tracking-wide max-w-[100px] truncate">
-                                        {user.displayName?.split(" ")}
+                                    <span className="text-sm font-bold text-stone-700 tracking-wider uppercase">
+                                        My Profile
                                     </span>
-                                    <ChevronDown className="w-3.5 h-3.5 text-stone-400 group-hover:text-stone-600" />
+                                    <ChevronDown className="w-3.5 h-3.5 text-stone-400 group-hover:text-stone-600 transition-colors" />
                                 </button>
 
                                 {isProfileDropdownOpen && (
@@ -87,12 +92,12 @@ export default function Navbar() {
                                         <div className="origin-top-right absolute right-0 mt-2 w-56 rounded bg-[#FBF8F3] border border-[#EADFC9] shadow-xl py-1.5 z-20 animate-fadeIn">
                                             <div className="px-4 py-2 border-b border-[#EADFC9] mb-1">
                                                 <p className="text-[10px] uppercase font-bold tracking-widest text-[#C29B38]">Scholar Account</p>
-                                                <p className="text-sm font-serif font-bold text-[#2E1A0F] truncate mt-0.5">{user.displayName}</p>
+                                                <p className="text-sm font-serif font-bold text-[#2E1A0F] truncate mt-0.5">{user.displayName || "Active Student"}</p>
                                                 <p className="text-xs text-stone-500 truncate">{user.email}</p>
                                             </div>
                                             <button
                                                 onClick={handleSignOut}
-                                                className="w-full text-left px-4 py-2 text-xs uppercase tracking-wider font-bold text-rose-700 hover:bg-rose-50 flex items-center gap-2 transition-colors duration-150"
+                                                className="w-full text-left px-4 py-2 text-xs uppercase tracking-wider font-bold text-rose-700 hover:bg-rose-50 flex items-center gap-2 transition-colors duration-150 cursor-pointer"
                                             >
                                                 <LogOut className="w-3.5 h-3.5" /> Sign Out
                                             </button>
@@ -103,14 +108,14 @@ export default function Navbar() {
                         ) : (
                             <div className="flex items-center gap-3">
                                 <Link
-                                    to="/Login"
-                                    className="text-xs uppercase tracking-widest font-bold text-stone-600 hover:text-[#5C2E16] px-3 py-2 rounded-full transition-all"
+                                    to="/login"
+                                    className="text-xs uppercase tracking-widest font-bold text-stone-600 hover:text-[#5C2E16] px-3 py-2 rounded transition-all"
                                 >
                                     Login
                                 </Link>
                                 <Link
                                     to="/register"
-                                    className="text-xs uppercase tracking-widest font-bold text-white bg-[#5C2E16] hover:bg-[#42200F] px-4 py-2 rounded-full shadow-sm transition-all"
+                                    className="text-xs uppercase tracking-widest font-bold text-white bg-[#5C2E16] hover:bg-[#42200F] px-4 py-2 rounded shadow-sm transition-all"
                                 >
                                     Register
                                 </Link>
@@ -149,25 +154,29 @@ export default function Navbar() {
                                 <div className="flex items-center gap-3 mb-4">
                                     <img
                                         className="h-9 w-9 rounded object-cover border border-stone-200"
-                                        src={user.photoURL || "https://unsplash.com"}
+                                        src={user.photoURL && user.photoURL.startsWith("http") ? user.photoURL : "https://dicebear.com"}
                                         alt={user.displayName}
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = "https://dicebear.com";
+                                        }}
                                     />
                                     <div>
-                                        <p className="text-sm font-serif font-bold text-stone-800 truncate">{user.displayName}</p>
+                                        <p className="text-sm font-serif font-bold text-stone-800 truncate">{user.displayName || "Active Student"}</p>
                                         <p className="text-xs text-stone-500 truncate">{user.email}</p>
                                     </div>
                                 </div>
                                 <button
                                     onClick={handleSignOut}
-                                    className="w-full text-center py-2 bg-rose-50 text-rose-600 font-bold text-xs uppercase tracking-wider rounded-full transition-colors flex items-center justify-center gap-2"
+                                    className="w-full text-center py-2 bg-rose-50 text-rose-600 font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2"
                                 >
                                     <LogOut className="w-3.5 h-3.5" /> End Session
                                 </button>
                             </div>
                         ) : (
                             <div className="px-4 flex flex-col gap-2">
-                                <Link to="/Login" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center py-2.5 text-stone-700 font-bold text-xs uppercase tracking-wider hover:bg-stone-100 rounded-full transition-colors">Login</Link>
-                                <Link to="/register" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center py-2.5 bg-[#5C2E16] text-white font-bold text-xs uppercase tracking-wider rounded-full">Register</Link>
+                                <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center py-2.5 text-stone-700 font-bold text-xs uppercase tracking-wider hover:bg-stone-100 rounded transition-colors">Login</Link>
+                                <Link to="/register" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center py-2.5 bg-[#5C2E16] text-white font-bold text-xs uppercase tracking-wider rounded">Register</Link>
                             </div>
                         )}
                     </div>
