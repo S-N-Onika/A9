@@ -95,7 +95,7 @@ export default function Navbar() {
                                             <Link to="/my-profile" onClick={() => setIsProfileDropdownOpen(false)} className="w-full text-left block px-4 py-2 text-xs uppercase tracking-wider font-bold text-stone-700 hover:bg-stone-50 transition-colors">
                                                 View Detailed Profile
                                             </Link>
-                                            <button onClick={handleSignOut} className="w-full text-left px-4 py-2 text-xs uppercase tracking-wider font-bold text-rose-700 hover:bg-rose-50 flex items-center gap-2 transition-colors duration-150 cursor-pointer">
+                                            <button onClick={handleSignOut} className="w-full text-left px-4 py-2 text-xs uppercase tracking-wider font-bold text-[#5C2E16] hover:bg-[#5C2E16] flex items-center gap-2 transition-colors duration-150 cursor-pointer">
                                                 <LogOut className="w-3.5 h-3.5" /> Sign Out
                                             </button>
                                         </div>
@@ -128,6 +128,7 @@ export default function Navbar() {
                                 <NavLink to="/add-room" onClick={() => setIsMobileMenuOpen(false)} className={getMobileNavLinkClass}>Add Room</NavLink>
                                 <NavLink to="/my-listings" onClick={() => setIsMobileMenuOpen(false)} className={getMobileNavLinkClass}>My Listings</NavLink>
                                 <NavLink to="/my-bookings" onClick={() => setIsMobileMenuOpen(false)} className={getMobileNavLinkClass}>My Bookings</NavLink>
+                                <NavLink to="/my-profile" onClick={() => setIsMobileMenuOpen(false)} className={getMobileNavLinkClass}>My Profile</NavLink>
                             </>
                         )}
                     </div>
@@ -135,14 +136,7 @@ export default function Navbar() {
                     <div className="pt-4 pb-4 border-t border-[#EADFC9] bg-[#5C2E16]/5">
                         {user ? (
                             <div className="px-4">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <img className="h-9 w-9 rounded object-cover border border-stone-200" src={user.photoURL && user.photoURL.startsWith("http") ? user.photoURL : "https://dicebear.com"} alt={user.displayName} onError={(e) => { e.target.onerror = null; e.target.src = "https://dicebear.com"; }} />
-                                    <div>
-                                        <p className="text-sm font-serif font-bold text-stone-800 truncate">{user.displayName || "Active Student"}</p>
-                                        <p className="text-xs text-stone-500 truncate">{user.email}</p>
-                                    </div>
-                                </div>
-                                <button onClick={handleSignOut} className="w-full text-center py-2 bg-rose-50 text-rose-600 font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2">
+                                <button onClick={handleSignOut} className="w-full text-center py-2 bg-[#5C2E16] text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2 cursor-pointer">
                                     <LogOut className="w-3.5 h-3.5" /> End Session
                                 </button>
                             </div>
@@ -158,3 +152,4 @@ export default function Navbar() {
         </nav>
     );
 }
+

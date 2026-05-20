@@ -6,15 +6,15 @@ import { Link } from "react-router-dom";
 export default function AllRooms() {
 
     useEffect(() => {
-        document.title = "StudyNook – Available Rooms";
+        document.title = "StudyNook - Available Rooms";
     }, []);
-    
+
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [selectedAmenities, setSelectedAmenities] = useState([]);
 
-    const amenitiesOptions = ["Whiteboard", "Projector", "Wi‑Fi", "Power Outlets", "Quiet Zone", "Air Conditioning"];
+    const amenitiesOptions = ["Whiteboard", "Projector", "Wi-Fi", "Power Outlets", "Quiet Zone", "Air Conditioning"];
 
     useEffect(() => {
         const fetchFilteredRooms = async () => {
@@ -24,8 +24,8 @@ export default function AllRooms() {
                 if (search) queryParams.append("search", search);
                 if (selectedAmenities.length > 0) queryParams.append("amenities", selectedAmenities.join(","));
 
-                const response = await axios.get(`http://localhost:5000/api/rooms?${queryParams.toString()}`);
-                setRooms(response.data);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/rooms?${queryParams.toString()}`);
+                setRooms(Array.isArray(response.data) ? response.data : []);
             } catch (err) {
                 console.error("Error reading room library arrays", err);
             } finally {
@@ -51,7 +51,6 @@ export default function AllRooms() {
             <h2 className="text-3xl font-serif font-black text-[#2E1A0F] mb-2 tracking-tight">Library Study Spaces</h2>
             <p className="text-sm text-stone-500 mb-8">Search, filter, and lock down quiet reservation parameters inside the network library.</p>
 
-            {/* Filter Controls Panel Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
                 <div className="bg-white border border-[#EADFC9] rounded p-6 shadow-sm h-fit space-y-6">
                     <div className="flex items-center gap-2 text-[#5C2E16] font-bold text-xs uppercase tracking-wider border-b pb-3">
@@ -77,7 +76,6 @@ export default function AllRooms() {
                     </div>
                 </div>
 
-                {/* Main Dynamic Rooms Card Grid */}
                 <div className="lg:col-span-3">
                     {loading ? (
                         <div className="min-h-[40vh] flex flex-col justify-center items-center">
@@ -86,7 +84,7 @@ export default function AllRooms() {
                         </div>
                     ) : rooms.length === 0 ? (
                         <div className="bg-white border border-[#EADFC9] rounded p-12 text-center">
-                            <p className="text-stone-500 font-medium">No matching spaces found inside the active directory criteria.</p>
+                            <p className="text-stone-500 font-medium">No rooms match your filters. Try adjusting search or amenities.</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -101,6 +99,21 @@ export default function AllRooms() {
                                             </div>
                                             <span className="inline-block text-[10px] font-bold bg-stone-100 text-stone-500 uppercase px-2 py-0.5 rounded mb-2">{room.floor}</span>
                                             <p className="text-stone-500 text-xs line-clamp-2 leading-relaxed">{room.description}</p>
+                                            <div className="flex flex-wrap gap-1 mt-2">
+                                                {room.amenities?.slice(0, 3).map((item, index) => (
+                                                    <span
+                                                        key={index}
+                                                        className="text-[10px] px-2 py-0.5 rounded bg-[#FBF8F3] border border-[#EADFC9] text-stone-500"
+                                                    >
+                                                        {item}
+                                                    </span>
+                                                ))}
+                                                {room.amenities?.length > 3 && (
+                                                    <span className="text-[10px] px-2 py-0.5 rounded bg-stone-100 text-stone-500">
+                                                        +{room.amenities?.length - 3} more
+                                                    </span>
+                                                )}
+                                            </div>
                                         </div>
                                         <Link to={`/rooms/${room._id}`} className="block text-center py-2 bg-[#5C2E16] hover:bg-[#42200F] text-[#FBF8F3] font-bold text-xs uppercase tracking-widest rounded transition-colors">
                                             View Details

@@ -9,8 +9,8 @@ export default function Footer() {
 
                 <div className="space-y-4 flex flex-col items-center md:items-start">
                     <div className="flex items-center gap-2.5 text-white font-serif font-black text-xl lg:text-3xl tracking-tight">
-                        <div className="w-8 h-8 lg:w-9 lg:h-9 rounded bg-[#C29B38] flex items-center justify-center text-[#2C1A11]">
-                            <MdLocalLibrary className="w-4 h-4 lg:w-5 lg:h-5" />
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 rounded bg-[#C29B38] flex items-center justify-center text-[#2C1A11]">
+                            <MdLocalLibrary className="w-5 h-4 lg:w-7 lg:h-6" />
                         </div>
                         <span>Study<span className="text-[#C29B38] font-normal italic">Nook</span></span>
                     </div>
