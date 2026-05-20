@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import { Menu, X, LogOut, ChevronDown } from "lucide-react"; 
+import { Menu, X, LogOut, ChevronDown } from "lucide-react";
 import { MdLocalLibrary } from "react-icons/md";
-
-
 import toast from "react-hot-toast";
 
 export default function Navbar() {
@@ -44,9 +42,9 @@ export default function Navbar() {
                     <div className="flex-shrink-0">
                         <Link to="/" className="flex items-center gap-2.5 group">
                             <div className="w-8 h-8 rounded bg-[#5C2E16] flex items-center justify-center text-[#FBF8F3] shadow-inner transition-transform group-hover:scale-105">
-                                <MdLocalLibrary className="text-[#FBF8F3] text-md" />
+                                <MdLocalLibrary className="text-[#FBF8F3] text-xl"/>
                             </div>
-                            <span className="text-3xl font-serif font-black tracking-tight text-[#2E1A0F]">
+                            <span className="text-2xl font-serif font-black tracking-tight text-[#2E1A0F]">
                                 Study<span className="text-[#C29B38] font-normal italic">Nook</span>
                             </span>
                         </Link>
@@ -67,24 +65,23 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center flex-shrink-0">
                         {user ? (
                             <div className="relative">
-                                <button
-                                    onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                                    className="flex items-center gap-2.5 p-1.5 rounded border border-[#EADFC9] bg-white/60 hover:bg-white transition-colors focus:outline-none group cursor-pointer"
-                                >
-                                    <img
-                                        className="h-7 w-7 rounded object-cover border border-stone-200 shrink-0"
-                                        src={user?.photoURL && user.photoURL.startsWith("http") ? user.photoURL : "https://dicebear.com"}
-                                        alt="Scholar Profile Map"
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = "https://dicebear.com";
-                                        }}
-                                    />
-                                    <span className="text-sm font-bold text-stone-700 tracking-wider uppercase">
-                                        My Profile
-                                    </span>
-                                    <ChevronDown className="w-3.5 h-3.5 text-stone-400 group-hover:text-stone-600 transition-colors" />
-                                </button>
+                                <div className="flex items-center gap-1 border border-[#EADFC9] rounded bg-white/60 hover:bg-white transition-colors duration-150">
+                                    <Link to="/my-profile" className="flex items-center gap-2.5 p-1.5 focus:outline-none group cursor-pointer">
+                                        <img
+                                            className="h-7 w-7 rounded object-cover border border-stone-200 shrink-0"
+                                            src={user?.photoURL && user.photoURL.startsWith("http") ? user.photoURL : "https://dicebear.com"}
+                                            alt="Profile Portrait Map"
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = "https://dicebear.com";
+                                            }}
+                                        />
+                                        <span className="text-sm font-bold text-stone-700 tracking-wider uppercase">My Profile</span>
+                                    </Link>
+                                    <button onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="pr-2 pl-1 h-full flex items-center justify-center text-stone-400 hover:text-stone-600 focus:outline-none border-l border-[#EADFC9]/60 cursor-pointer">
+                                        <ChevronDown className="w-3.5 h-3.5" />
+                                    </button>
+                                </div>
 
                                 {isProfileDropdownOpen && (
                                     <>
@@ -95,10 +92,10 @@ export default function Navbar() {
                                                 <p className="text-sm font-serif font-bold text-[#2E1A0F] truncate mt-0.5">{user.displayName || "Active Student"}</p>
                                                 <p className="text-xs text-stone-500 truncate">{user.email}</p>
                                             </div>
-                                            <button
-                                                onClick={handleSignOut}
-                                                className="w-full text-left px-4 py-2 text-xs uppercase tracking-wider font-bold text-rose-700 hover:bg-rose-50 flex items-center gap-2 transition-colors duration-150 cursor-pointer"
-                                            >
+                                            <Link to="/my-profile" onClick={() => setIsProfileDropdownOpen(false)} className="w-full text-left block px-4 py-2 text-xs uppercase tracking-wider font-bold text-stone-700 hover:bg-stone-50 transition-colors">
+                                                View Detailed Profile
+                                            </Link>
+                                            <button onClick={handleSignOut} className="w-full text-left px-4 py-2 text-xs uppercase tracking-wider font-bold text-rose-700 hover:bg-rose-50 flex items-center gap-2 transition-colors duration-150 cursor-pointer">
                                                 <LogOut className="w-3.5 h-3.5" /> Sign Out
                                             </button>
                                         </div>
@@ -107,27 +104,14 @@ export default function Navbar() {
                             </div>
                         ) : (
                             <div className="flex items-center gap-3">
-                                <Link
-                                    to="/login"
-                                    className="text-xs uppercase tracking-widest font-bold text-stone-600 hover:text-[#5C2E16] px-3 py-2 rounded transition-all"
-                                >
-                                    Login
-                                </Link>
-                                <Link
-                                    to="/register"
-                                    className="text-xs uppercase tracking-widest font-bold text-white bg-[#5C2E16] hover:bg-[#42200F] px-4 py-2 rounded shadow-sm transition-all"
-                                >
-                                    Register
-                                </Link>
+                                <Link to="/login" className="text-xs uppercase tracking-widest font-bold text-stone-600 hover:text-[#5C2E16] px-3 py-2 transition-all">Login</Link>
+                                <Link to="/register" className="text-xs uppercase tracking-widest font-bold text-white bg-[#5C2E16] hover:bg-[#42200F] px-4 py-2 rounded shadow-sm transition-all">Register</Link>
                             </div>
                         )}
                     </div>
 
                     <div className="flex items-center md:hidden">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="p-2 rounded text-stone-500 hover:text-stone-800 hover:bg-[#EADFC9]/30 focus:outline-none transition-colors"
-                        >
+                        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 rounded text-stone-500 hover:text-stone-800 hover:bg-[#EADFC9]/30 focus:outline-none transition-colors">
                             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                         </button>
                     </div>
@@ -152,24 +136,13 @@ export default function Navbar() {
                         {user ? (
                             <div className="px-4">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <img
-                                        className="h-9 w-9 rounded object-cover border border-stone-200"
-                                        src={user.photoURL && user.photoURL.startsWith("http") ? user.photoURL : "https://dicebear.com"}
-                                        alt={user.displayName}
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = "https://dicebear.com";
-                                        }}
-                                    />
+                                    <img className="h-9 w-9 rounded object-cover border border-stone-200" src={user.photoURL && user.photoURL.startsWith("http") ? user.photoURL : "https://dicebear.com"} alt={user.displayName} onError={(e) => { e.target.onerror = null; e.target.src = "https://dicebear.com"; }} />
                                     <div>
                                         <p className="text-sm font-serif font-bold text-stone-800 truncate">{user.displayName || "Active Student"}</p>
                                         <p className="text-xs text-stone-500 truncate">{user.email}</p>
                                     </div>
                                 </div>
-                                <button
-                                    onClick={handleSignOut}
-                                    className="w-full text-center py-2 bg-rose-50 text-rose-600 font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2"
-                                >
+                                <button onClick={handleSignOut} className="w-full text-center py-2 bg-rose-50 text-rose-600 font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2">
                                     <LogOut className="w-3.5 h-3.5" /> End Session
                                 </button>
                             </div>

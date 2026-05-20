@@ -63,12 +63,13 @@ async function run() {
             }).send({ success: true });
         });
 
-        app.get('/api/home-rooms', async (req, res) => {
+        app.get('/api/rooms', async (req, res) => {
             try {
-                const result = await roomsCollection.find().sort({ _id: -1 }).limit(6).toArray();
+                const db = client.db('studyNookDB');
+                const result = await db.collection('rooms').find().toArray();
                 res.send(result);
-            } catch (err) {
-                res.send([]);
+            } catch (error) {
+                res.status(500).send({ message: "Failed to fetch room database index matrix." });
             }
         });
 

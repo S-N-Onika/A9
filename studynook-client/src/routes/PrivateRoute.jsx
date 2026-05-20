@@ -8,9 +8,9 @@ export default function PrivateRoute({ children }) {
 
     if (loading) {
         return (
-            <div className="min-h-[70vh] flex flex-col items-center justify-center bg-slate-50">
-                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-emerald-800"></div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 animate-pulse">Synchronizing Session Security Profile Matrix...</p>
+            <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#FBF8F3]">
+                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#5C2E16]"></div>
+                <p className="text-xs font-bold text-stone-400 uppercase tracking-wider mt-4 animate-pulse">Validating Academic Profile Profile Matrix...</p>
             </div>
         );
     }
