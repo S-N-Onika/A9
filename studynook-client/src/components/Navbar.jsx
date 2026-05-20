@@ -103,7 +103,7 @@ export default function Navbar() {
                         ) : (
                             <div className="flex items-center gap-3">
                                 <Link
-                                    to="/login"
+                                    to="/Login"
                                     className="text-xs uppercase tracking-widest font-bold text-stone-600 hover:text-[#5C2E16] px-3 py-2 rounded-full transition-all"
                                 >
                                     Login
@@ -166,7 +166,7 @@ export default function Navbar() {
                             </div>
                         ) : (
                             <div className="px-4 flex flex-col gap-2">
-                                <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center py-2.5 text-stone-700 font-bold text-xs uppercase tracking-wider hover:bg-stone-100 rounded-full transition-colors">Login</Link>
+                                <Link to="/Login" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center py-2.5 text-stone-700 font-bold text-xs uppercase tracking-wider hover:bg-stone-100 rounded-full transition-colors">Login</Link>
                                 <Link to="/register" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center py-2.5 bg-[#5C2E16] text-white font-bold text-xs uppercase tracking-wider rounded-full">Register</Link>
                             </div>
                         )}

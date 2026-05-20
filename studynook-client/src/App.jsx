@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 // import MyListings from "./pages/MyListings";
 // import MyBookings from "./pages/MyBookings";
 // import UpdateRoom from "./pages/UpdateRoom";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 // import Register from "./pages/Register";
 // import PrivateRoute from "./routes/PrivateRoute";
 
@@ -28,10 +28,10 @@ const router = createBrowserRouter([
       //   path: "/rooms/:id",
       //   element: <RoomDetails />
       // },
-      // {
-      //   path: "/login",
-      //   element: <Login />
-      // },
+      {
+        path: "/login",
+        element: <Login />
+      },
       // {
       //   path: "/register",
       //   element: <Register />

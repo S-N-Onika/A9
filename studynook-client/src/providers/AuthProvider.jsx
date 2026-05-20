@@ -9,11 +9,10 @@ import {
     onAuthStateChanged,
     updateProfile
 } from "firebase/auth";
-import { app } from "../firebase/firebase.config.js";
+import { auth } from "../firebase/firebase.config";
 import axios from "axios";
 
 export const AuthContext = createContext(null);
-const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 export default function AuthProvider({ children }) {
@@ -54,7 +53,6 @@ export default function AuthProvider({ children }) {
             if (currentUser) {
                 const userInfo = { email: currentUser.email };
                 try {
-                   
                     await axios.post("http://localhost:5000/api/jwt", userInfo, { withCredentials: true });
                 } catch (error) {
                     console.error("JWT handshake configuration error:", error);
