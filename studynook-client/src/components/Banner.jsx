@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import BaseSlider from "react-slick";
 import { Link } from "react-router-dom";
-import { LuArrowRight, LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { LuArrowRight, LuChevronLeft, LuChevronRight, LuCirclePlus, LuAward } from "react-icons/lu";
 
 import bannerImg from "../assets/l1.jfif";
 import banner1Img from "../assets/l2.jpg";
@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Slider = BaseSlider.default || BaseSlider;
 
-export default function Banner() {
+const Banner = () => {
     const sliderRef = useRef(null);
 
     const settings = {
@@ -65,8 +65,14 @@ export default function Banner() {
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
                 <div className="max-w-2xl w-full text-center md:text-left space-y-4 md:space-y-6">
+
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#C29B38]/20 border border-[#C29B38]/40 text-[#C29B38] text-xs uppercase tracking-widest font-bold animate-fadeIn rounded-2xl">
+                        <LuAward className="w-4 h-4" />
+                        <span>Verified Library Network</span>
+                    </div>
+
                     <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-white drop-shadow-lg leading-tight">
-                        Reserve Premium<br className="hidden sm:block" /> Scholar
+                        Reserve Premium<br className="hidden sm:block" /> Study
                         <span className="text-[#C29B38] italic font-normal"> Chambers</span>
                     </h1>
 
@@ -81,6 +87,14 @@ export default function Banner() {
                         >
                             Explore Rooms
                             <LuArrowRight className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+
+                        <Link
+                            to="/add-room"
+                            className="inline-flex items-center justify-center gap-2 border-2 border-stone-400 hover:border-[#C29B38] text-stone-200 hover:text-white px-6 py-3 md:px-8 md:py-4 rounded font-bold text-xs uppercase tracking-widest transition-all hover:-translate-y-1 active:scale-95"
+                        >
+                            <LuCirclePlus className="w-4 h-4" />
+                            <span>List Your Room</span>
                         </Link>
                     </div>
                 </div>
@@ -108,3 +122,5 @@ export default function Banner() {
         </section>
     );
 }
+
+export default Banner;
