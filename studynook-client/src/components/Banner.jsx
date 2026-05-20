@@ -76,7 +76,7 @@ export default function Banner() {
                     </h1>
 
                     <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl font-medium max-w-md mx-auto md:mx-0 leading-relaxed tracking-wide">
-                        Browse and book quiet, private study rooms in your library. List your own room and earn.
+                        Reserve beautifully maintained study rooms designed for deep focus, collaboration, and uninterrupted learning.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2 md:pt-4">
@@ -89,11 +89,11 @@ export default function Banner() {
                         </Link>
 
                         <Link
-                            to="/add-room"
+                            to="/AddRoom"
                             className="inline-flex items-center justify-center gap-2 border-2 border-stone-400 hover:border-[#C29B38] text-stone-200 hover:text-white px-6 py-3 md:px-8 md:py-4 rounded font-bold text-xs uppercase tracking-widest transition-all hover:-translate-y-1 active:scale-95"
                         >
                             <LuCirclePlus className="w-4 h-4" />
-                            <span>List Your Room</span>
+                            <span>Become a Host</span>
                         </Link>
                     </div>
                 </div>

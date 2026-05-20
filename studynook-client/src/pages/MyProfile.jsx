@@ -59,7 +59,7 @@ export default function MyProfile() {
     };
 
     return (
-        <div className="min-h-[85vh] w-full flex items-center justify-center px-4 py-12 bg-[#FBF8F3]">
+        <div className="min-h-[85vh] w-full flex items-center justify-center px-4 py-4 bg-[#FBF8F3]">
             <div className="bg-white rounded border border-[#EADFC9] max-w-3xl w-full overflow-hidden shadow-sm transition-all duration-300">
 
                 <div className="bg-[#2C1A11] p-8 text-center relative border-b-4 border-[#C29B38]">
@@ -76,7 +76,7 @@ export default function MyProfile() {
                             />
                         </div>
 
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-[#FBF8F3] tracking-tight">
+                        <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-black text-[#FBF8F3] tracking-tight">
                             {user?.displayName || "Scholar Resident"}
                         </h2>
 
@@ -86,7 +86,7 @@ export default function MyProfile() {
                     </div>
                 </div>
 
-                <div className="p-6 sm:p-10 lg:p-12 space-y-8">
+                <div className="p-4 sm:p-10 lg:p-10 space-y-4">
 
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-stone-200 pb-4">
                         <div>
@@ -210,13 +210,13 @@ export default function MyProfile() {
                         </div>
                     </div>
 
-                    <div className="p-5 rounded border border-[#EADFC9] bg-[#FBF8F3] flex items-start gap-3.5">
+                    <div className="p-3 rounded border border-[#EADFC9] bg-[#FBF8F3] flex items-start gap-3.5">
                         <div className="w-9 h-9 rounded bg-[#C29B38]/10 text-[#C29B38] flex items-center justify-center shrink-0 mt-0.5">
                             <LuBookOpen className="w-5 h-5" />
                         </div>
                         <div>
                             <h4 className="text-sm uppercase font-black tracking-wider text-[#2E1A0F] mb-1">Library Compliance Rules</h4>
-                            <p className="text-xs lg:text-sm text-stone-500 leading-relaxed font-medium">
+                            <p className="text-xs text-stone-500 leading-relaxed font-medium">
                                 Your account remains bound by the university library network regulatory codes. All user space listings, calculated hourly charges, and time slots are continuously audited to ensure fair access conditions for everyone in the campus learning community.
                             </p>
                         </div>
