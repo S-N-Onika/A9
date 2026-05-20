@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import { Menu, X, BookOpen, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, LogOut, ChevronDown } from "lucide-react";
+import { MdLocalLibrary } from "react-icons/md";
+
 import toast from "react-hot-toast";
 
 export default function Navbar() {
@@ -41,7 +43,7 @@ export default function Navbar() {
                     <div className="flex-shrink-0">
                         <Link to="/" className="flex items-center gap-2.5 group">
                             <div className="w-8 h-8 rounded bg-[#5C2E16] flex items-center justify-center text-[#FBF8F3] shadow-inner transition-transform group-hover:scale-105">
-                                <BookOpen className="w-4 h-4 text-[#FBF8F3]" />
+                                <MdLocalLibrary className="w-6 h-5 text-[#FBF8F3]" />
                             </div>
                             <span className="text-2xl font-serif font-black tracking-tight text-[#2E1A0F]">
                                 Study<span className="text-[#C29B38] font-normal italic">Nook</span>
